@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Scheduler - Estudiantes & Trabajo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 AI Scheduler</h1>
+            <p>Organiza tu tiempo entre estudios y trabajo de manera inteligente</p>
+        </div>
+
+        <div class="main-grid">
+            <div class="card">
+                <h2>➕ Agregar Nueva Tarea</h2>
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label>Descripción de la tarea:</label>
+                        <textarea id="taskDescription" rows="3" placeholder="Ej: Estudiar para examen de cálculo"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Duración (horas):</label>
+                        <select id="taskDuration">
+                            <option value="1">1 hora</option>
+                            <option value="2">2 horas</option>
+                            <option value="3">3 horas</option>
+                            <option value="4">4 horas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha límite (opcional):</label>
+                        <input type="date" id="taskDeadline">
+                    </div>
+                    <div class="form-group">
+                        <label>Prioridad:</label>
+                        <select id="taskPriority">
+                            <option value="high">Alta - Muy importante</option>
+                            <option value="medium">Media - Importante</option>
+                            <option value="low">Baja - Puede esperar</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Agregar Tarea</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>🤖 Generar Horario IA</h2>
+                <p style="margin-bottom: 20px; color: #718096;">
+                    La IA analizará tus tareas pendientes y creará un horario optimizado.
+                </p>
+                <button id="generateBtn" class="btn">Generar Horario Inteligente</button>
+                <div id="alerts"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 Tareas Pendientes</h2>
+            <div id="pendingTasks"></div>
+        </div>
+
+        <div class="card">
+            <h2>✅ Tareas Completadas</h2>
+            <div id="completedTasks"></div>
+        </div>
+        <div class="schedule-container">
+            <h2>📅 Tu Horario Optimizado</h2>
+            <div id="scheduleContent">
+                <div class="loading">
+                    <p>Agrega algunas tareas y genera tu horario personalizado</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
