@@ -272,3 +272,7 @@ def health_check():
         'message': 'Servidor funcionando correctamente',
         'tasks_count': len(tasks_storage)
     })
+
+@app.route("/")
+def index():
+    return "Backend Flask funcionando en Vercel 🚀"
