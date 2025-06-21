@@ -2,9 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from datetime import datetime, timedelta
 import json
+import os
 
 app = Flask(__name__)
-CORS(app)  # Permitir requests desde el frontend
+CORS(app)
 
 # Almacenamiento en memoria (en producción usarías una base de datos)
 tasks_storage = []
@@ -182,8 +183,6 @@ def generate_schedule():
     """Generar horario optimizado"""
     try:
         # Usar las tareas almacenadas en lugar de los datos del request
-        # (el frontend manda week_history pero nosotros usamos nuestro storage)
-        
         if not tasks_storage:
             return jsonify({
                 'success': False,
@@ -269,9 +268,13 @@ def health_check():
         'tasks_count': len(tasks_storage)
     })
 
-# Esta parte es CRÍTICA para Vercel - el handler debe exportarse
+# Para Vercel - función principal
 def handler(request):
+    """Handler principal para Vercel"""
     return app(request.environ, lambda status, headers: None)
+
+# Alias para compatibilidad
+app.handler = handler
 
 if __name__ == '__main__':
     print("🚀 Iniciando servidor backend...")
