@@ -272,11 +272,3 @@ def health_check():
         'message': 'Servidor funcionando correctamente',
         'tasks_count': len(tasks_storage)
     })
-
-# Para Vercel - función principal
-def handler(environ, start_response):
-    return app(environ, start_response)
-
-if __name__ == '__main__':
-    print("🚀 Iniciando servidor backend...")
-    app.run(debug=True, host='0.0.0.0', port=5000)
