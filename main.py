@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify 
 from flask_cors import CORS
 from datetime import datetime, timedelta
 import json
@@ -6,6 +6,11 @@ import os
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route("/api/test")
+def test():
+    return jsonify({"message": "Funciona desde Vercel ✅"})
+
 
 # Almacenamiento en memoria (en producción usarías una base de datos)
 tasks_storage = []
@@ -269,12 +274,8 @@ def health_check():
     })
 
 # Para Vercel - función principal
-def handler(request):
-    """Handler principal para Vercel"""
-    return app(request.environ, lambda status, headers: None)
-
-# Alias para compatibilidad
-app.handler = handler
+def handler(environ, start_response):
+    return app(environ, start_response)
 
 if __name__ == '__main__':
     print("🚀 Iniciando servidor backend...")
